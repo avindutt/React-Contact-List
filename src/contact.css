@@ -1,0 +1,20 @@
+.contact-bar{
+    background-color: aliceblue;
+    border: 2px solid black;
+    border-radius: 7px;
+    height: auto;
+    margin: 5px;
+}
+
+.name-bar{
+    color: white;
+    background-color: rgba(14, 183, 230, 0.736);
+    margin: 4px 4px;
+    height: 1.65rem;
+}
+
+.contact-items{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
