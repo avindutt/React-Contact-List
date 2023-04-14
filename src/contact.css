@@ -1,9 +1,10 @@
 .contact-bar{
     background-color: aliceblue;
-    border: 2px solid black;
+    border: 2px solid rgb(19, 215, 237);
     border-radius: 7px;
-    height: auto;
+    height: 7.2rem;
     margin: 5px;
+    width: 100%;
 }
 
 .name-bar{
@@ -17,4 +18,21 @@
     padding: 5px;
     display: flex;
     justify-content: space-between;
+}
+
+.contact-items input{
+    text-align: center;
+    width: 13rem;
+    outline-style: none;
+    border: none;
+    background-color: white;
+}
+
+.contact-bar button {
+    padding: 5px;
+    margin-left: 6.3px;
+    border: none;
+    position: relative;
+    border-radius:7px;
+    color: whitesmoke;
 }

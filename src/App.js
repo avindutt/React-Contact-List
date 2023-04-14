@@ -5,57 +5,70 @@ import { useState } from "react";
 function App() {
 
   const [data, setdata] = useState([]);
-
-// useEffect(()=> {
-// async function logJSONData() {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//   const jsonData = await response.json();
-//   // console.log(jsonData);
-//   jsonData.map((user)=>{
-//     const contact = {
-//       id: user.id,
-//       name: user.name,
-//       email: user.email,
-//       address: user.email
-//     };
-//     setdata((prev)=> [...prev, contact]);
-//     // console.log(contact)
-//     console.log(data)
-//   });
-// }
-//     logJSONData();
-//       return setdata([]);
-//   }, []);
-
-// useEffect(() => {
-//   fetch('https://jsonplaceholder.typicode.com/users')
-//     .then(response => response.json())
-//     .then(data => setdata(data));
-// }, []);
+  const [disable, setdisable] = useState(true);
 
 useEffect(() => {
   async function fetchingApi() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const newData = await response.json();
   setdata(newData);
-  console.log(newData);
   }
   fetchingApi();
 }, [])
 
+  const updateData = async(updation) => {
+    setdisable(false);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${updation.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updation),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+    const newData = await response.json();
+    const myObject = {...newData};
+    console.log(myObject);
+    setdata(data.map((listItem) => {
+      if(listItem.id === updation.id){
+        return myObject;
+      } else {
+        return listItem;
+      }
+    }));
+  }
+
+  const deleteContact = async(deletion) => {
+    console.log('deleted', deletion);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${deletion.id}`, {
+      method: 'DELETE',
+    });
+    setdata(data.filter((listItem) => {
+      if(listItem.id !== deletion.id){
+        return listItem;
+      }
+    }))
+  }
 
   return (
     <>
-
+    <h1 style={style}>Your Contacts</h1>
     {data.map((listItem) => (
       <Contact
         key = {listItem.id}
         data = {listItem}
+        updateData = {updateData}
+        deleteContact={deleteContact}
+        disable={disable}
       />
     ))}
-    
     </>
   );
+}
+
+const style = {
+  color: "white",
+  padding: '10px',
+  marginLeft: '6.3rem'
 }
 
 export default App;
