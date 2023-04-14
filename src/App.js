@@ -1,6 +1,8 @@
-import Contact from './contact'
+import Contact from './contact';
+import { AddContact } from './addContact';
 import { useEffect } from "react";
 import { useState } from "react";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -17,6 +19,7 @@ useEffect(() => {
 }, [])
 
   const updateData = async(updation) => {
+    console.log('updated');
     setdisable(false);
     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${updation.id}`, {
     method: 'PUT',
@@ -51,8 +54,9 @@ useEffect(() => {
 
   return (
     <>
-    <h1 style={style}>Your Contacts</h1>
-    {data.map((listItem) => (
+    <h1 style={style}>--Your Contacts--</h1>
+    <ToastContainer/>
+    {data.map((listItem, index) => (
       <Contact
         key = {listItem.id}
         data = {listItem}
@@ -61,6 +65,14 @@ useEffect(() => {
         disable={disable}
       />
     ))}
+
+      <div className='my-container-2'>
+      <AddContact
+      data = {data}
+      setdata = {setdata}
+      />
+      </div>
+
     </>
   );
 }

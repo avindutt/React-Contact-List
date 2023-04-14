@@ -1,6 +1,8 @@
 import React from "react";
 import './contact.css'; 
 import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Contact({data, updateData, disable, deleteContact}) {
 
@@ -12,8 +14,6 @@ function Contact({data, updateData, disable, deleteContact}) {
         email: data.email,
     });
 
-    const [edit, setedit] = useState(true);
-
     const handleChange = (e) => {
         e.preventDefault();
         setFormData((prev) => (
@@ -22,18 +22,25 @@ function Contact({data, updateData, disable, deleteContact}) {
     }
 
     const updateContact = async(e) => {
-        setedit(false);
         e.preventDefault();
         await updateData({...formData});
+        toast.success('Contact Updated!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000
+        });
     }
 
     const handleDelete = async(e) => {
         e.preventDefault();
         await deleteContact({...formData});
+        toast.success('Contact Deleted!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000
+        });
     }
 
     return (
-        <div className="container">
+        <div className="my-container-1">
             <div className="contact-bar">
                 <div className="name-bar">
                     <h5>{data.name}</h5>

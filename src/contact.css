@@ -1,3 +1,8 @@
+.my-container-1 {
+    width: 70%;
+    display: inline-block;
+}
+
 .contact-bar{
     background-color: aliceblue;
     border: 2px solid rgb(19, 215, 237);
@@ -35,4 +40,10 @@
     position: relative;
     border-radius:7px;
     color: whitesmoke;
+}
+
+.my-container-2 {
+    position: absolute;
+    right: 6rem;
+    top: 5.2em;
 }

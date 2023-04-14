@@ -1,0 +1,41 @@
+.container input{
+    margin-left: 30px;
+    outline: none;
+}
+
+.container label {
+    color: white;
+    font-weight: 300;
+    font-size: larger;
+}
+
+.name {
+    position: relative;
+    left: 0.7px;
+}
+
+.phone{
+    position: relative;
+    left: -2.7px;
+}
+
+.website {
+    position: relative;
+    left: -15px;
+}
+
+.email {
+    position: relative;
+    left: 6.7px;
+}
+
+.container button {
+    border: none;
+    height: 3rem;
+    width: 8rem;
+    margin-top: 13px;
+    background-color: rgb(76, 213, 251);
+    color: white;
+    font-weight: 400;
+    font-size: larger;
+}
